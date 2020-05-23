@@ -44,6 +44,10 @@ class Types::Profile < Types::BaseObject
     null: true,
     description: 'The message this user has submitted for the Hall of Fame'
 
+  field :pinned_post, Types::Post,
+    null: true,
+    description: 'Post pinned to the user profile'
+
   def url
     "https://kitsu/users/#{object.slug || object.id}"
   end
