@@ -2,9 +2,11 @@ class Types::Profile < Types::BaseObject
   description 'A user profile on Kitsu'
 
   field :id, ID, null: false
+
   field :slug, String,
     null: true,
     description: 'The URL-friendly identifier for this profile'
+
   field :url, String,
     null: true,
     description: 'The URL for this profile'
