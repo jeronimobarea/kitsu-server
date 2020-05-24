@@ -44,7 +44,15 @@ class Types::Profile < Types::BaseObject
     null: true,
     description: 'The message this user has submitted for the Hall of Fame'
 
+  field :media_reactions, Types::MediaReaction.connection_type,
+    null: false,
+    description: 'Media reactions written by this user.'
+
   def url
     "https://kitsu/users/#{object.slug || object.id}"
+  end
+
+  def media_reactions
+    AssociationLoader.for(object.class, :media_reactions).load(object)
   end
 end
