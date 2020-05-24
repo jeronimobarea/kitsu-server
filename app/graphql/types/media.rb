@@ -138,4 +138,12 @@ module Types::Media
   def categories
     AssociationLoader.for(object.class, :categories).load(object)
   end
+
+  field :media_reactions, Types::MediaReaction.connection_type,
+    null: false,
+    description: 'A list of reactions for this media'
+
+  def media_reactions
+    AssociationLoader.for(object.class, :media_reactions).load(object)
+  end
 end
