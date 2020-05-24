@@ -48,7 +48,23 @@ class Types::Profile < Types::BaseObject
     null: true,
     description: 'Post pinned to the user profile'
 
+  field :posts, Types::Post.connection_type,
+    null: false,
+    description: 'All posts this profile has made.'
+
+  field :comments, Types::Comment.connection_type,
+    null: false,
+    description: 'All comments to any post this user has made.'
+
   def url
     "https://kitsu/users/#{object.slug || object.id}"
+  end
+
+  def posts
+    AssociationLoader.for(object.class, :posts).load(object)
+  end
+
+  def comments
+    AssociationLoader.for(object.class, :comments).load(object)
   end
 end
