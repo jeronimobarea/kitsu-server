@@ -71,7 +71,6 @@ class Types::QueryType < Types::BaseObject
 
     argument :id, String, required: false
     argument :slug, String, required: false
-    argument :name, String, required: false
   end
 
   def find_profile(slug: nil, id: nil)
@@ -79,8 +78,6 @@ class Types::QueryType < Types::BaseObject
       ::User.find(id)
     elsif slug
       ::User.find_by(slug: slug)
-    elsif name
-      ::User.find_by(name: name)
     end
   end
 
