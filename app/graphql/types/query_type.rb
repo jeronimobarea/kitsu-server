@@ -67,7 +67,7 @@ class Types::QueryType < Types::BaseObject
   end
 
   field :find_profile, Types::Profile, null: true do
-    description 'Find a single user in the Kitsu database by ID, Slug, or Name'
+    description 'Find a single user in the Kitsu database by ID or Slug'
 
     argument :id, String, required: false
     argument :slug, String, required: false
