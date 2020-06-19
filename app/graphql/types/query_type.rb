@@ -66,19 +66,22 @@ class Types::QueryType < Types::BaseObject
     TrendingService.new(medium, token: context[:token]).get_network(10)
   end
 
-  field :find_profile, Types::Profile, null: true do
-    description 'Find a single user in the Kitsu database by ID or Slug'
-
-    argument :id, String, required: false
-    argument :slug, String, required: false
+  field :find_profile_by_id, Types::Profile, null: true do
+    description 'Find a single user in the Kitsu database by ID'
+    argument :id, ID, required: true
   end
 
-  def find_profile(slug: nil, id: nil)
-    if id
-      ::User.find(id)
-    elsif slug
-      ::User.find_by(slug: slug)
-    end
+  def find_profile_by_id(id:)
+    ::User.find(id)
+  end
+
+  field :find_profile_by_slug, Types::Profile, null: true do
+    description 'Find a single user in the Kitsu database by Slug'
+    argument :slug, String, required: true
+  end
+
+  def find_profile_by_slug(slug:)
+    ::User.find_by(slug: slug)
   end
 
   field :find_character, Types::Character, null: true do
