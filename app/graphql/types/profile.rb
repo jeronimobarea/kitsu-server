@@ -53,6 +53,6 @@ class Types::Profile < Types::BaseObject
   end
 
   def media_reactions
-    AssociationLoader.for(object.class, :media_reactions).load(object)
+    AssociationLoader.for(object.class, :media_reactions).scope(object)
   end
 end
