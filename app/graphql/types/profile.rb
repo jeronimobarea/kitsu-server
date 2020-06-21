@@ -63,10 +63,10 @@ class Types::Profile < Types::BaseObject
   end
 
   def posts
-    AssociationLoader.for(object.class, :posts).load(object)
+    AssociationLoader.for(object.class, :posts).scope(object)
   end
 
   def comments
-    AssociationLoader.for(object.class, :comments).load(object)
+    AssociationLoader.for(object.class, :comments).scope(object)
   end
 end
